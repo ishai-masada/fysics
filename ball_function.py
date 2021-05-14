@@ -1,9 +1,14 @@
 import math
-fysics_dict = dict()
+
+class Vector2:
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
 
 def ball_throw(ang, speed):
-    # angle is in degrees and speed in meters/second
+    """ angle is in degrees and speed in meters/second"""
     
+    fysics_dict = dict()
     # Convert angle to radians
     converted_ang = (ang * math.pi) / 180
 
@@ -23,7 +28,24 @@ def ball_throw(ang, speed):
     distance = round((speed**2 * math.sin(2*converted_ang))/ acceleration, 2)
 
     # Put time and distance into dictionary
-    fysics_dict["range in meters"] = distance
-    fysics_dict["time in seconds"] = time
+    fysics_dict["distance"] = distance
+    fysics_dict["time"] = time
 
     return fysics_dict
+
+
+def simulated_ball_throw(ang, speed):
+    steps_per_sec = 100
+    position = Vector2()
+    converted_ang = (ang * math.pi) / 180
+    v_speed = speed * math.sin(converted_ang)
+    h_speed = speed * math.cos(converted_ang)
+    velocity = Vector2(v_speed, h_speed)
+    
+    while True:
+        position.x += velocity.x/steps_per_sec
+        position.y += velocity.y/steps_per_sec
+        velocity.y -= 9.8/steps_per_sec
+        if position.y < 0:
+            return abs(position.x)
+    
