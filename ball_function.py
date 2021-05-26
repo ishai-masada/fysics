@@ -5,6 +5,18 @@ class Vector2:
         self.x = x
         self.y = y
 
+    def __add__(self, isinstance(b, Vector2):
+        return Vector2(x + b.x, y + b.y)
+
+
+    def __truediv__(self, isinstance(b, (int, float)):
+        return self(x/b, y/b)
+
+
+    def point(self):
+    return "something"
+
+
 def ball_throw(ang, speed):
     """ angle is in degrees and speed in meters/second"""
     
