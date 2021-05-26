@@ -5,6 +5,27 @@ class Vector2:
         self.x = x
         self.y = y
 
+    def __add__(self, b):
+        if isinstance(b, Vector2):
+            return Vector2(self.x + b.x, self.y + b.y)
+        else:
+            raise TypeError(f"unsupported operand type(s) for +: 'Vector2' and {type(b)}")
+        
+    def __truediv__(self, b):
+        if isinstance(b, (int, float)):
+            return Vector2(self.x / b, self.y / b)
+        else:
+            raise TypeError(f"unsupported type(s) for /: 'Vector2' and {type(b)}")
+        
+    def magnitude(self):
+        return math.sqrt(self.x**2 + self.y**2)
+
+    def point(self):
+        return "something"
+ 
+    def the(self):
+        return "the other thing"
+ 
 def ball_throw(ang, speed):
     """ angle is in degrees and speed in meters/second"""
     
@@ -46,8 +67,7 @@ def simulated_ball_throw(ang, speed):
  
     
     while True:
-        position.x += velocity.x/steps_per_sec
-        position.y += velocity.y/steps_per_sec
+        position += velocity/steps_per_sec
         velocity.y -= 9.8/steps_per_sec
         distance = abs(round(position.x, 1))
         
@@ -66,15 +86,15 @@ def simulated_ball_throw(ang, speed):
             # Store the maximum altitude into the dictionary
             simulated_dict["maximum height"] = max_altitude
 
-            # Find the magnitude of the vector
-            hyp_vel = (h_speed**2 + v_speed**2)**.5
+        current_vel = velocity.magnitude()
 
+        if simulated_dict.get("maximum velocity", 0) < current_vel:
             #Store the max velocity into the dictionary
-            simulated_dict["maximum velocity"] = round(hyp_vel, 2)
+            simulated_dict["maximum velocity"] = round(current_vel, 2)
 
         # Store time and range into dictionary
         if position.y < 0:
             simulated_dict["distance"] = distance
             simulated_dict["time"] = time
             return simulated_dict
-    
+   
