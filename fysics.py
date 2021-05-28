@@ -5,16 +5,41 @@ class Vector2:
         self.x = x
         self.y = y
 
-    def __add__(self, isinstance(b, Vector2):
-        return Vector2(x + b.x, y + b.y)
+    def __add__(self, b):
+        if isinstance(b, Vector2):
+            return Vector2(self.x + b.x, self.y + b.y)
+        else:
+            raise TypeError('do no go')
+
+    def __truediv__(self, b):
+        if isinstance(b, (float, int)):
+            return Vector2(self.x/b, self.y/b)
+        else:
+            raise TypeError('do no go')
+        
+    def length(self):
+        return math.sqrt(self.x ** 2 + self.y ** 2)
+
+class Point:
+    def __init__(self, position=None, velocity=None):
+        self.position = position or Vector2()
+        self.velocity = velocity or Vector2()
 
 
-    def __truediv__(self, isinstance(b, (int, float)):
-        return self(x/b, y/b)
+    def step(self, steps_per_sec, gravity=Vector2(0, -9.8)):
+        self.position += self.velocity / steps_per_sec
+        self.velocity += gravity
+        if self.position.y <= 0:
+            self.velocity.y = 0
+            self.position.y = 0
 
+def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8)):
+    time = 0
+    while time < duration:
+        time += 1 / steps_per_sec
+        for body in bodies:
+            body.step(steps_per_sec, gravity) 
 
-    def point(self):
-    return "something"
 
 
 def ball_throw(ang, speed):
@@ -55,22 +80,17 @@ def simulated_ball_throw(ang, speed):
     v_speed = speed * math.sin(converted_ang)
     h_speed = speed * math.cos(converted_ang)
     velocity = Vector2(v_speed, h_speed)
- 
+    time = 0 
     
     while True:
-        position.x += velocity.x/steps_per_sec
-        position.y += velocity.y/steps_per_sec
+        position += velocity / steps_per_sec
         velocity.y -= 9.8/steps_per_sec
         distance = abs(round(position.x, 1))
         
         
         # Calculate the time it takes for ball to land
-        time = round(2 * v_speed/acceleration, 2)
-
-        # Check to see if trig functuion made time negative
-        if time < 0:
-            time = -1 * time
-
+        time += 1 / steps_per_sec 
+        
         # Verify the velocity to find the maximum height
         if velocity.y >= 0:
             max_altitude = round(position.y, 2)
@@ -78,11 +98,10 @@ def simulated_ball_throw(ang, speed):
             # Store the maximum altitude into the dictionary
             simulated_dict["maximum height"] = max_altitude
 
-            # Find the magnitude of the vector
-            hyp_vel = (h_speed**2 + v_speed**2)**.5
+        current_velocity = velocity.length()
+        if current_velocity > simulated_dict.get('max velocity', 0):
+            simulated_dict['max velocity'] = current_velocity
 
-            #Store the max velocity into the dictionary
-            simulated_dict["maximum velocity"] = round(hyp_vel, 2)
 
         # Store time and range into dictionary
         if position.y < 0:
