@@ -33,6 +33,28 @@ class Point:
             self.velocity.y = 0
             self.position.y = 0
 
+
+class Wheel:
+    def __init__(self, radius, mass, position=None, velocity=None):
+        self.position = position or Vector2()
+        self.velocity = velocity or Vector2()
+        self.radius = radius
+        self.mass = mass
+    
+    def step(self, steps_per_sec, gravity=Vector2(0, -9.8)):
+        self.position += self.velocity / steps_per_sec
+        self.velocity += gravity
+        if self.position.y - self.radius <= 0:
+            self.velocity.y = 0
+            self.position.y = 0 + self.radius
+            
+    def roll(self, x_velocity):
+        if velocity.x != 0:
+            force = (mass * velocity.length) / time
+            torque = math.cos(force)
+
+
+
 def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8)):
     time = 0
     while time < duration:
