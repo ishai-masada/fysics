@@ -5,11 +5,13 @@ class Vector2:
         self.x = x
         self.y = y
 
+
     def __add__(self, b):
         if isinstance(b, Vector2):
             return Vector2(self.x + b.x, self.y + b.y)
         else:
             raise TypeError('do no go')
+
 
     def __truediv__(self, b):
         if isinstance(b, (float, int)):
@@ -23,34 +25,11 @@ class Vector2:
             return Vector2(self.x*b, self.y*b)
         else:
             raise TypeError('do no go')(b, (float, int)):
-                return Vector2(self.x*b, self.y*b)
-            else:
-                raise TypeError('do no go')(b, (float, int)):
-                    return Vector2(self.x*b, self.y*b)
-                else:
-                    raise TypeError('do no go')(b, (float, int)):
-                        return Vector2(self.x*b, self.y*b)
-                    else:
-                        raise TypeError('do no go')(b, (float, int)):
-                            return Vector2(self.x*b, self.y*b)
-                        else:
-                            raise TypeError('do no go')(b, (float, int)):
-                                return Vector2(self.x*b, self.y*b)
-                            else:
-                                raise TypeError('do no go')(b, (float, int)):
-                                    return Vector2(self.x*b, self.y*b)
-                                else:
-                                    raise TypeError('do no go')(b, (float, int)):
-                                        return Vector2(self.x*b, self.y*b)
-                                    else:
-                                        raise TypeError('do no go')(b, (float, int)):
-                                            return Vector2(self.x*b, self.y*b)
-                                        else:
-                                            raise TypeError('do no go')
 
 
     def length(self):
         return math.sqrt(self.x ** 2 + self.y ** 2)
+
 
 class Point:
     def __init__(self, position=None, velocity=None):
@@ -67,12 +46,14 @@ class Point:
 
 
 class Wheel:
-    def __init__(self, radius, mass, position=None, velocity=None):
+    def __init__(self, radius, mass, position=None, velocity=None, force=None):
         self.position = position or Vector2()
         self.velocity = velocity or Vector2()
+        self.force = force or Vector2()
         self.radius = radius
         self.mass = mass
-    
+         
+
     def step(self, steps_per_sec, gravity=Vector2(0, -9.8)):
         self.position += self.velocity / steps_per_sec
         self.velocity += gravity
@@ -80,12 +61,10 @@ class Wheel:
             self.velocity.y = 0
             self.position.y = 0 + self.radius
             
+
     def roll(self, x_velocity):
         if velocity.x != 0:
-            angle = math.atan(position.x / position.y)
-            force = ((mass * velocity.length) / time) + (mass * gravity)
-            torque = mass * 
-
+            torque = radius * self.force.x
 
 
 def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8)):
