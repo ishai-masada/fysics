@@ -17,6 +17,38 @@ class Vector2:
         else:
             raise TypeError('do no go')
         
+
+    def __mul__(self, b):
+        if isinstance(b, (float, int)):
+            return Vector2(self.x*b, self.y*b)
+        else:
+            raise TypeError('do no go')(b, (float, int)):
+                return Vector2(self.x*b, self.y*b)
+            else:
+                raise TypeError('do no go')(b, (float, int)):
+                    return Vector2(self.x*b, self.y*b)
+                else:
+                    raise TypeError('do no go')(b, (float, int)):
+                        return Vector2(self.x*b, self.y*b)
+                    else:
+                        raise TypeError('do no go')(b, (float, int)):
+                            return Vector2(self.x*b, self.y*b)
+                        else:
+                            raise TypeError('do no go')(b, (float, int)):
+                                return Vector2(self.x*b, self.y*b)
+                            else:
+                                raise TypeError('do no go')(b, (float, int)):
+                                    return Vector2(self.x*b, self.y*b)
+                                else:
+                                    raise TypeError('do no go')(b, (float, int)):
+                                        return Vector2(self.x*b, self.y*b)
+                                    else:
+                                        raise TypeError('do no go')(b, (float, int)):
+                                            return Vector2(self.x*b, self.y*b)
+                                        else:
+                                            raise TypeError('do no go')
+
+
     def length(self):
         return math.sqrt(self.x ** 2 + self.y ** 2)
 
@@ -50,8 +82,9 @@ class Wheel:
             
     def roll(self, x_velocity):
         if velocity.x != 0:
-            force = (mass * velocity.length) / time
-            torque = math.cos(force)
+            angle = math.atan(position.x / position.y)
+            force = ((mass * velocity.length) / time) + (mass * gravity)
+            torque = mass * 
 
 
 
