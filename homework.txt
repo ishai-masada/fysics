@@ -1,0 +1,11 @@
+Make a Ball class
+
+properties
+- radius
+- mass
+- friction
+- rotation (float for angle)
+
+step function: takes the same args
+
+note: ball should rotate if it hits the ground horizontally
