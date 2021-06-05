@@ -9,3 +9,7 @@ properties
 step function: takes the same args
 
 note: ball should rotate if it hits the ground horizontally
+
+- replace mass with density
+- add friction coefficient argument
+- add bounciness coefficient

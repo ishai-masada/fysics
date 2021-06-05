@@ -24,7 +24,7 @@ class Vector2:
         if isinstance(b, (float, int)):
             return Vector2(self.x*b, self.y*b)
         else:
-            raise TypeError('do no go')(b, (float, int)):
+            raise TypeError('do no go')
 
 
     def length(self):
@@ -45,11 +45,10 @@ class Point:
             self.position.y = 0
 
 
-class Wheel:
-    def __init__(self, radius, mass, position=None, velocity=None, force=None):
+class Circle:
+    def __init__(self, radius, mass, position=None, velocity=None):
         self.position = position or Vector2()
         self.velocity = velocity or Vector2()
-        self.force = force or Vector2()
         self.radius = radius
         self.mass = mass
          
@@ -57,6 +56,7 @@ class Wheel:
     def step(self, steps_per_sec, gravity=Vector2(0, -9.8)):
         self.position += self.velocity / steps_per_sec
         self.velocity += gravity
+        angle = atan(self.position.x / self.position.y)
         if self.position.y - self.radius <= 0:
             self.velocity.y = 0
             self.position.y = 0 + self.radius
@@ -64,8 +64,7 @@ class Wheel:
 
     def roll(self, x_velocity):
         if velocity.x != 0:
-            torque = radius * self.force.x
-
+            pass
 
 def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8)):
     time = 0
