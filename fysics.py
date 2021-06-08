@@ -69,27 +69,27 @@ class Ball:
 
     @property
     def mass(self):
-        return mass = self.density / area
+        return self.density / self.area
  
     @property
     def rotation(self):
-        return rotation = atan(self.position.x / self.position.y)
+        return atan(self.position.x / self.position.y)
 
     @property
     def area(self):
-        return area = math.pi * radius**2
+        return math.pi * self.radius**2
 
     @property
     def inertia(self):
-        return inertia = list(integrate.quad(lambda mass, radius: mass*radius**2, 0, math.inf))[0]
+        return list(integrate.quad(lambda self.mass, self.radius: self.mass * self.radius**2, 0, math.inf))[0]
  
     @property
     def ang_mtm(self):
-        return angular_momentum = radius * mass * velocity.x
+        return self.radius * self.mass * self.velocity.x
 
     @property
     def ang_speed(self):
-        return angular_velocity = self.ang_mtm / self.inertia
+        return self.ang_mtm / self.inertia
 
 
 def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8)):
