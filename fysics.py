@@ -81,7 +81,7 @@ class Ball:
 
     @property
     def inertia(self):
-        return list(integrate.quad(lambda self.mass, self.radius: self.mass * self.radius**2, 0, math.inf))[0]
+        return integrate.quad(lambda self.mass, self.radius: self.mass * self.radius**2, 0, math.inf)[0]
  
     @property
     def ang_mtm(self):
