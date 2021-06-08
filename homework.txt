@@ -13,3 +13,8 @@ note: ball should rotate if it hits the ground horizontally
 - replace mass with density
 - add friction coefficient argument
 - add bounciness coefficient
+- add mass property method
+- find equations for KE, torque
+
+
+- add "apply force" method for Bodies
