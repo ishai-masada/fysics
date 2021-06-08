@@ -1,4 +1,6 @@
 import math
+import spicy.integrate as integrate
+import spicy.special as special
 
 class Vector2:
     def __init__(self, x=0, y=0):
@@ -45,26 +47,50 @@ class Point:
             self.position.y = 0
 
 
-class Circle:
-    def __init__(self, radius, mass, position=None, velocity=None):
+class Ball:
+    def __init__(self, radius, bounce, density, friction, position=None, velocity=None):
         self.position = position or Vector2()
         self.velocity = velocity or Vector2()
         self.radius = radius
-        self.mass = mass
-         
-
+        self.bounce = bounce
+        self.density = density
+        self.friction = friction
+        
     def step(self, steps_per_sec, gravity=Vector2(0, -9.8)):
         self.position += self.velocity / steps_per_sec
         self.velocity += gravity
-        angle = atan(self.position.x / self.position.y)
         if self.position.y - self.radius <= 0:
             self.velocity.y = 0
-            self.position.y = 0 + self.radius
+            self.position.y = self.radius
             
-
     def roll(self, x_velocity):
         if velocity.x != 0:
             pass
+
+    @property
+    def mass(self):
+        return mass = self.density / area
+ 
+    @property
+    def rotation(self):
+        return rotation = atan(self.position.x / self.position.y)
+
+    @property
+    def area(self):
+        return area = math.pi * radius**2
+
+    @property
+    def inertia(self):
+        return inertia = list(integrate.quad(lambda mass, radius: mass*radius**2, 0, math.inf))[0]
+ 
+    @property
+    def ang_mtm(self):
+        return angular_momentum = radius * mass * velocity.x
+
+    @property
+    def ang_speed(self):
+        return angular_velocity = self.ang_mtm / self.inertia
+
 
 def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8)):
     time = 0
@@ -72,7 +98,6 @@ def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8))
         time += 1 / steps_per_sec
         for body in bodies:
             body.step(steps_per_sec, gravity) 
-
 
 
 def ball_throw(ang, speed):
