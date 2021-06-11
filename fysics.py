@@ -60,8 +60,8 @@ class Ball:
         if self.position.y - self.radius <= 0:
             self.velocity.y = 0
             self.position.y = self.radius
-            if velocity.x != 0:
-                velocity.x = self.radius * self.ang_speed
+            if self.velocity.x != 0:
+                self.velocity.x = self.radius * self.ang_speed
 
     @property
     def mass(self):
@@ -82,6 +82,10 @@ class Ball:
     @property
     def ang_speed(self):
         return (self.radius * self.mass * self.velocity.x) / self.inertia
+
+    @property
+    def friction(self):
+        return Vector2(friction * self.mass * gravity).y
 
 
 def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8)):
