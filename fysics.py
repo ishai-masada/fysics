@@ -1,6 +1,4 @@
 import math
-import spicy.integrate as integrate
-import spicy.special as special
 
 class Vector2:
     def __init__(self, x=0, y=0):
@@ -62,10 +60,8 @@ class Ball:
         if self.position.y - self.radius <= 0:
             self.velocity.y = 0
             self.position.y = self.radius
-            
-    def roll(self, x_velocity):
-        if velocity.x != 0:
-            pass
+            if velocity.x != 0:
+                velocity.x = self.radius * self.ang_speed
 
     @property
     def mass(self):
@@ -80,16 +76,12 @@ class Ball:
         return math.pi * self.radius**2
 
     @property
-    def inertia(self):
-        return integrate.quad(lambda self.mass, self.radius: self.mass * self.radius**2, 0, math.inf)[0]
- 
-    @property
-    def ang_mtm(self):
-        return self.radius * self.mass * self.velocity.x
-
+    def intertia(self):
+        return (2/5) * self.mass * (self.radius**2)
+    
     @property
     def ang_speed(self):
-        return self.ang_mtm / self.inertia
+        return (self.radius * self.mass * self.velocity.x) / self.inertia
 
 
 def simulate_bodies(bodies, duration, steps_per_sec=1, gravity=Vector2(0, -9.8)):
